@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Room</title>
+    <style>
+        #chatBox {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #000;
+            padding: 10px;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chat Room</h1>
+    <label for="name">Your Name: </label>
+    <input type="text" id="name" placeholder="Enter your name">
+    <button onclick="joinChat()">Join Chat</button>
+    <div id="chatBox"></div>
+    <input type="text" id="message" placeholder="Type your message">
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        let username = "";
+        const chatBox = document.getElementById("chatBox");
+
+        function joinChat() {
+            const nameInput = document.getElementById("name");
+            username = nameInput.value;
+            nameInput.disabled = true;
+        }
+
+        function sendMessage() {
+            const messageInput = document.getElementById("message");
+            const message = messageInput.value;
+
+            if (message.trim() !== "") {
+                const messageElement = document.createElement("p");
+                messageElement.innerText = username + ": " + message;
+                chatBox.appendChild(messageElement);
+                chatBox.scrollTop = chatBox.scrollHeight;
+                messageInput.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
